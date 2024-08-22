@@ -94,6 +94,8 @@ class ButtonWidgetConfigureActivity : BaseWidgetConfigureActivity() {
             .setNegativeButton(android.R.string.cancel) { _, _ -> }
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 if (dynamicFields.any { it.field == binding.widgetTextConfigService.text.toString() }) return@setPositiveButton
+                // Prevent duplicate fields
+                if (dynamicFields.any { it.field == fieldKeyInput.text.toString() }) return@setPositiveButton
 
                 val position = dynamicFields.size
                 dynamicFields.add(
